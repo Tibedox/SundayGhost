@@ -8,12 +8,13 @@ public class Ghost {
     float x, y;
     float width, height;
     private float stepX, stepY;
+    boolean isLive = true;
 
     public Ghost() {
         width = MathUtils.random(50f, 200f);
         height = width*1.5f;
-        x = screenWidth/2-width/2;
-        y = screenHeight/2-height/2;
+        x = SCREEN_WIDTH /2-width/2;
+        y = SCREEN_HEIGHT /2-height/2;
         stepX = MathUtils.random(-10f, 10f);
         stepY = MathUtils.random(-10f, 10f);
     }
@@ -24,27 +25,33 @@ public class Ghost {
         outOfBounds2();
     }
 
-    void outOfBounds() {
-        if (x > screenWidth - width || x < 0) {
+    void outOfBounds1() {
+        if (x > SCREEN_WIDTH - width || x < 0) {
             stepX = -stepX;
         }
-        if (y > screenHeight - height || y < 0) {
+        if (y > SCREEN_HEIGHT - height || y < 0) {
             stepY = -stepY;
         }
     }
 
     void outOfBounds2(){
-        if (x > screenWidth) {
+        if (x > SCREEN_WIDTH) {
             x = -width;
         }
         if (x < -width) {
-            x = screenWidth;
+            x = SCREEN_WIDTH;
         }
-        if (y > screenHeight) {
+        if (y > SCREEN_HEIGHT) {
             y = -height;
         }
         if (y < -height) {
-            y = screenHeight;
+            y = SCREEN_HEIGHT;
+        }
+    }
+
+    void hit(float tx, float ty){
+        if(x < tx && tx < x+width && y < ty && ty < y+height){
+            isLive = false;
         }
     }
 }
