@@ -49,9 +49,11 @@ public class Ghost {
         }
     }
 
-    void hit(float tx, float ty){
+    boolean hit(float tx, float ty){
         if(x < tx && tx < x+width && y < ty && ty < y+height){
             isLive = false;
+            return true;
         }
+        return false;
     }
 }

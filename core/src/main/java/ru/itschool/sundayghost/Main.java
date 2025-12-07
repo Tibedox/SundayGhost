@@ -2,9 +2,11 @@ package ru.itschool.sundayghost;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 
@@ -15,6 +17,7 @@ public class Main extends ApplicationAdapter {
     OrthographicCamera camera;
     Vector3 touch;
     Texture image;
+    Sound[] sound = new Sound[15];
     Ghost[] ghost = new Ghost[33];
 
     @Override
@@ -24,6 +27,10 @@ public class Main extends ApplicationAdapter {
         camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
         touch = new Vector3();
         image = new Texture("ghost.png");
+        for (int i = 0; i < sound.length; i++) {
+            sound[i] = Gdx.audio.newSound(Gdx.files.internal("snd/man_death_"+i/10+i%10+".ogg"));
+        }
+
         for(int i = 0; i < ghost.length; i++) {
             ghost[i] = new Ghost();
         }
@@ -36,7 +43,9 @@ public class Main extends ApplicationAdapter {
             touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             camera.unproject(touch);
             for (int i = 0; i < ghost.length; i++) {
-                ghost[i].hit(touch.x, touch.y);
+                if(ghost[i].isLive && ghost[i].hit(touch.x, touch.y)){
+                    sound[MathUtils.random(0, 14)].play();
+                }
             }
         }
 
