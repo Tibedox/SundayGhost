@@ -2,28 +2,13 @@ package ru.itschool.sundayghost;
 
 import static ru.itschool.sundayghost.Main.*;
 
-import com.badlogic.gdx.math.MathUtils;
-
-public class Ghost {
+public abstract class Ghost {
     float x, y;
     float width, height;
-    private float stepX, stepY;
+    float stepX, stepY;
     boolean isLive = true;
 
-    public Ghost() {
-        width = MathUtils.random(50f, 200f);
-        height = width*1.5f;
-        x = SCREEN_WIDTH /2-width/2;
-        y = SCREEN_HEIGHT /2-height/2;
-        stepX = MathUtils.random(-10f, 10f);
-        stepY = MathUtils.random(-10f, 10f);
-    }
-
-    void move() {
-        x += stepX;
-        y += stepY;
-        outOfBounds2();
-    }
+    abstract void move();
 
     void outOfBounds1() {
         if (x > SCREEN_WIDTH - width || x < 0) {

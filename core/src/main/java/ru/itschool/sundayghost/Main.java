@@ -22,7 +22,7 @@ public class Main extends ApplicationAdapter {
     Texture imgDementor;
     Sound[] sound = new Sound[15];
 
-    Ghost[] ghost = new Ghost[33];
+    WhiteGhost[] ghost = new WhiteGhost[33];
     Dementor[] dementor = new Dementor[10];
 
     @Override
@@ -39,7 +39,7 @@ public class Main extends ApplicationAdapter {
         }
 
         for(int i = 0; i < ghost.length; i++) {
-            ghost[i] = new Ghost();
+            ghost[i] = new WhiteGhost();
         }
         for (int i = 0; i < dementor.length; i++) {
             dementor[i] = new Dementor();
