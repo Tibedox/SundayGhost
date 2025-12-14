@@ -7,10 +7,10 @@ import com.badlogic.gdx.math.MathUtils;
 
 public class WhiteGhost extends Ghost{
     public WhiteGhost(){
-        width = MathUtils.random(50f, 100f);
-        height = width*1.5f;
-        x = SCREEN_WIDTH /2-width/2;
-        y = SCREEN_HEIGHT /2-height/2;
+        setWidth(MathUtils.random(50f, 100f));
+        setHeight(getWidth()*1.5f);
+        x = SCREEN_WIDTH /2-getWidth()/2;
+        y = SCREEN_HEIGHT /2-getHeight()/2;
         stepX = MathUtils.random(-5f, 5f);
         stepY = MathUtils.random(-5f, 5f);
     }

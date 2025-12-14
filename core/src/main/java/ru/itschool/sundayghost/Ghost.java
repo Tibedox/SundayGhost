@@ -4,9 +4,27 @@ import static ru.itschool.sundayghost.Main.*;
 
 public abstract class Ghost {
     float x, y;
-    float width, height;
+     float width, height;
     float stepX, stepY;
     boolean isLive = true;
+
+    public void setWidth(float width){
+        if(width>=0) {
+            this.width = width;
+        }
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
+    }
+
+    public float getWidth(){
+        return width;
+    }
+
+    public float getHeight() {
+        return height;
+    }
 
     abstract void move();
 
